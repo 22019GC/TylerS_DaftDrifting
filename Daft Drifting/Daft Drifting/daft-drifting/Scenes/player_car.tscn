@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dgs2i3ft0gdxq"]
+
+[ext_resource type="Script" uid="uid://degvbblwrx7nn" path="res://Scripts/PlayerCar_movement.gd" id="1_k5784"]
+[ext_resource type="Script" uid="uid://88a11wkqd0ef" path="res://Scripts/HUD.gd" id="2_w2t4p"]
+[ext_resource type="Script" uid="uid://b804s7p02tpmx" path="res://Scripts/CarAnimations.gd" id="3_6aji4"]
+[ext_resource type="PackedScene" uid="uid://dvh5trxpsx57" path="res://Models/TaxiCar/TaxiCarV2.blend" id="4_swgpl"]
+[ext_resource type="Texture2D" uid="uid://bgejas2e3i377" path="res://Models/TaxiCar/TaxiCarTexture.png" id="5_ohjfa"]
+[ext_resource type="Texture2D" uid="uid://duhdqouoch1km" path="res://Models/TaxiCar/TaxiCarTire.png" id="6_re5et"]
+[ext_resource type="Script" uid="uid://dl1whhcrwo8sf" path="res://Scripts/restart_logic.gd" id="7_w2t4p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_go701"]
+size = Vector3(1, 1.0396484, 2.188684)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fo5ed"]
+albedo_texture = ExtResource("5_ohjfa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ukr8"]
+albedo_texture = ExtResource("6_re5et")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o06y3"]
+albedo_texture = ExtResource("6_re5et")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7acu"]
+albedo_texture = ExtResource("6_re5et")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v1tr"]
+albedo_texture = ExtResource("6_re5et")
+
+[node name="PlayerCar" type="Node3D" unique_id=330195109]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=191612854 groups=["Player"]]
+script = ExtResource("1_k5784")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1766092067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00031140447, 0.19116807)
+shape = SubResource("BoxShape3D_go701")
+debug_color = Color(0.16861197, 0.6942186, 1.92523e-07, 1)
+
+[node name="HUD" type="Control" parent="CharacterBody3D/CollisionShape3D" unique_id=1270462637]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 300.0
+script = ExtResource("2_w2t4p")
+
+[node name="SpeedLabel" type="RichTextLabel" parent="CharacterBody3D/CollisionShape3D/HUD" unique_id=1872691160]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 243.0
+offset_right = 478.0
+offset_bottom = 306.0
+theme_override_font_sizes/normal_font_size = 37
+text = "100"
+horizontal_alignment = 1
+
+[node name="LaptimeLabel" type="RichTextLabel" parent="CharacterBody3D/CollisionShape3D/HUD" unique_id=1735515275]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 480.0
+offset_bottom = 68.0
+theme_override_font_sizes/normal_font_size = 37
+text = "100"
+horizontal_alignment = 1
+
+[node name="LastLaptimeLabel" type="RichTextLabel" parent="CharacterBody3D/CollisionShape3D/HUD" unique_id=171400079]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 91.0
+offset_right = 388.0
+offset_bottom = 132.0
+theme_override_font_sizes/normal_font_size = 18
+text = "100"
+
+[node name="BestLaptimeLabel" type="RichTextLabel" parent="CharacterBody3D/CollisionShape3D/HUD" unique_id=99847644]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 65.0
+offset_right = 386.0
+offset_bottom = 102.0
+theme_override_font_sizes/normal_font_size = 18
+text = "100"
+
+[node name="Timer" type="Timer" parent="CharacterBody3D/CollisionShape3D/HUD" unique_id=107111221]
+one_shot = true
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=84356725]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 1.5, 2.5)
+current = true
+fov = 90.0
+
+[node name="TopDownCamera" type="Camera3D" parent="CharacterBody3D" unique_id=1937774675]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 80, -5)
+
+[node name="Visual Car" type="Node3D" parent="CharacterBody3D" unique_id=971461862]
+script = ExtResource("3_6aji4")
+
+[node name="TaxiCarV2" parent="CharacterBody3D/Visual Car" unique_id=331265773 instance=ExtResource("4_swgpl")]
+transform = Transform3D(-0.5999964, 0.002094391, -9.059749e-08, 0.002094391, 0.5999964, 0, 9.0596934e-08, -3.1624425e-10, -0.6, 0, -0.5, -0.532547)
+
+[node name="Cube" parent="CharacterBody3D/Visual Car/TaxiCarV2" index="0" unique_id=1328930633]
+material_override = SubResource("StandardMaterial3D_fo5ed")
+
+[node name="Tire FL" parent="CharacterBody3D/Visual Car/TaxiCarV2" index="1" unique_id=1418085610]
+material_override = SubResource("StandardMaterial3D_5ukr8")
+
+[node name="Tire FR" parent="CharacterBody3D/Visual Car/TaxiCarV2" index="2" unique_id=2106747060]
+material_override = SubResource("StandardMaterial3D_o06y3")
+
+[node name="Tire BR" parent="CharacterBody3D/Visual Car/TaxiCarV2" index="3" unique_id=153198168]
+material_override = SubResource("StandardMaterial3D_k7acu")
+
+[node name="Tire BL" parent="CharacterBody3D/Visual Car/TaxiCarV2" index="4" unique_id=2060976751]
+material_override = SubResource("StandardMaterial3D_5v1tr")
+
+[node name="RestartLogic" type="Node" parent="CharacterBody3D" unique_id=754309196]
+script = ExtResource("7_w2t4p")
+
+[connection signal="timeout" from="CharacterBody3D/CollisionShape3D/HUD/Timer" to="CharacterBody3D/CollisionShape3D/HUD" method="_on_timer_timeout"]
+
+[editable path="CharacterBody3D/Visual Car/TaxiCarV2"]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bvjgjae1ehswr"]
+
+[ext_resource type="Script" uid="uid://j15j6uwwfwtv" path="res://Scripts/RaceTrackLogic.gd" id="1_hqhqk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxxda"]
+size = Vector3(15, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqhqk"]
+transparency = 1
+albedo_color = Color(0, 0.627451, 0.52156866, 0.41960785)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xqvf"]
+size = Vector3(58.937958, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxxda"]
+transparency = 1
+albedo_color = Color(0.6313726, 0, 0, 0.41960785)
+
+[node name="RaceTrack" type="Node3D" unique_id=1057913989]
+script = ExtResource("1_hqhqk")
+
+[node name="Start Area3d" type="Area3D" parent="." unique_id=1610663934]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start Area3d" unique_id=883284470]
+shape = SubResource("BoxShape3D_xxxda")
+debug_color = Color(0, 0.62550694, 0.5224568, 0.41960785)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Start Area3d/CollisionShape3D" unique_id=507970290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42993164, 0, 0)
+size = Vector3(60, 5, 1)
+material = SubResource("StandardMaterial3D_hqhqk")
+
+[node name="End Area3d" type="Area3D" parent="." unique_id=228377834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.710538)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End Area3d" unique_id=1114586089]
+shape = SubResource("BoxShape3D_8xqvf")
+debug_color = Color(0.6313726, 0, 0, 0.41960785)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="End Area3d/CollisionShape3D" unique_id=169677958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13550758, -0.06669873, 0.024467468)
+size = Vector3(60, 5, 1)
+material = SubResource("StandardMaterial3D_xxxda")
+
+[connection signal="body_entered" from="Start Area3d" to="." method="_on_start_area_3d_body_entered"]
+[connection signal="body_exited" from="Start Area3d" to="." method="_on_start_area_3d_body_exited"]
+[connection signal="body_entered" from="End Area3d" to="." method="_on_end_area_3d_body_entered"]
+[connection signal="body_exited" from="End Area3d" to="." method="_on_end_area_3d_body_exited"]

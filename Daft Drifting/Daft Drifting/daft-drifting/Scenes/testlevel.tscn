@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://frriwqrbp4nr"]
+
+[ext_resource type="PackedScene" uid="uid://bvjgjae1ehswr" path="res://Scenes/race_track.tscn" id="1_4q2ik"]
+[ext_resource type="Texture2D" uid="uid://su0vmlqc0318" path="res://Models/Road/new_noise_texture_2d.tres" id="2_0sylt"]
+[ext_resource type="Texture2D" uid="uid://6qa5bxrdath1" path="res://Models/Road/new_noise_texture_2d1.tres" id="3_anvtu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a7ea"]
+albedo_color = Color(0.19915998, 0.1924, 0.26, 1)
+albedo_texture = ExtResource("2_0sylt")
+normal_enabled = true
+normal_texture = ExtResource("3_anvtu")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.21914
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o06y3"]
+seed = 324
+frequency = 0.017
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k7acu"]
+noise = SubResource("FastNoiseLite_o06y3")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5v1tr"]
+seed = 67
+frequency = 0.0311
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o06y3"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_5v1tr")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 1.0
+bump_strength = 15.4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0fj1v"]
+width = 32
+height = 32
+noise = SubResource("FastNoiseLite_5v1tr")
+seamless = true
+seamless_blend_skirt = 1.0
+bump_strength = 17.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikia7"]
+albedo_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+albedo_texture = SubResource("NoiseTexture2D_k7acu")
+roughness_texture = SubResource("NoiseTexture2D_0fj1v")
+roughness_texture_channel = 2
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_o06y3")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.3077863
+uv1_world_triplanar = true
+
+[node name="Level" type="Node3D" unique_id=2094653742]
+
+[node name="RaceTrack" parent="." unique_id=1057913989 instance=ExtResource("1_4q2ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.30056)
+
+[node name="Start Area3d" parent="RaceTrack" index="0" unique_id=1610663934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -125.885994)
+
+[node name="End Area3d" parent="RaceTrack" index="1" unique_id=228377834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 135.29022)
+
+[node name="CSGBox3D" type="CSGCylinder3D" parent="." unique_id=1888178518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7192383, 0)
+material_override = SubResource("StandardMaterial3D_5a7ea")
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+radius = 225.0
+height = 3.5615234
+
+[node name="CSGBox3D" type="CSGCylinder3D" parent="CSGBox3D" unique_id=757937481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.186935, 0)
+material_override = SubResource("StandardMaterial3D_5a7ea")
+operation = 2
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+radius = 220.0
+height = 32.11255
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=651509090]
+transform = Transform3D(0.9708672, 0, 0.23961808, 0, 1, 0, -0.23961808, 0, 0.9708672, -75, -1, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+radius = 50.0
+height = 3.0
+sides = 10
+material = SubResource("StandardMaterial3D_ikia7")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=1553869134]
+transform = Transform3D(0.9708672, 0, 0.23961808, 0, 1, 0, -0.23961808, 0, 0.9708672, 75, -1, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+radius = 50.0
+height = 3.0
+material = SubResource("StandardMaterial3D_ikia7")
+
+[editable path="RaceTrack"]
