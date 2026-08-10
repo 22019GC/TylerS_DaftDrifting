@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_start_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		green_box.visible = false
 		time = 0.00
 		GlobalVars.Restart = false
 		TimerRunning = true
@@ -43,7 +42,8 @@ func _Timer():
 
 func _on_end_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		red_box.visible = true
+		green_box.visible = true
+		red_box.visible = false
 		var temp_min = 5.0
 		#final min = 0.0
 		if time>temp_min and GlobalVars.Restart==false:
@@ -51,14 +51,7 @@ func _on_end_area_3d_body_entered(body: Node3D) -> void:
 		TimerRunning = false
 		
 
-	
-
-
-func _on_end_area_3d_body_exited(body: Node3D) -> void:
-	if body.is_in_group("Player"):
-		red_box.visible = false
-
-
 func _on_start_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		green_box.visible = true
+		red_box.visible = true
+		green_box.visible = false
