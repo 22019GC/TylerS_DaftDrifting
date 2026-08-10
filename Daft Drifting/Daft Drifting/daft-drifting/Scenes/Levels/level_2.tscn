@@ -22,10 +22,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1067543, 0, -29.859665)
 shape = SubResource("BoxShape3D_w2ac1")
 
 [node name="End Area3d" parent="RaceTrack" index="1" unique_id=228377834]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.494461, -3.3273118, -97.501884)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7939563, -3.3273118, -97.501884)
 
 [node name="CollisionShape3D" parent="RaceTrack/End Area3d" index="0" unique_id=1114586089]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.497818, 0, 0.60300446)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.675943, 0, 0.60300446)
 
 [node name="Track" type="Node3D" parent="." unique_id=283295991]
 transform = Transform3D(-15, 0, -1.3113416e-06, 0, 15, 0, 1.3113416e-06, 0, -15, -4.4440002, -5, -102.18405)
