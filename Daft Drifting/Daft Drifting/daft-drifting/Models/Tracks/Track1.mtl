@@ -1,6 +1,6 @@
 # Made in Blockbench 5.1.5
-newmtl m_b4e3ae2a-c1fb-444f-0dda-d0a0b009a40f
-map_Kd road_texture.png
-newmtl m_31e02b30-2295-f998-813c-ed8a5a2c0eaf
-map_Kd wall_texture.png
+newmtl m_16e1915c-b72b-35bf-a6d6-7110a0c07153
+map_Kd texture1.png
+newmtl m_fe12ed16-db60-8afc-23a6-28f081d9b5b0
+map_Kd texture2.png
 newmtl none
